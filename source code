@@ -1,0 +1,115 @@
+#contact book in python programming.
+contacts = []
+
+def add_contact():
+    name = input("Enter name: ")
+    phone_number = input("Enter phone number: ")
+    email = input("Enter email (optional): ")
+    if email == "":
+        email = "None"
+    address = input("Enter address (optional): ")
+    if address == "":
+        address = "None"
+
+    contact_info = {
+        "name": name,
+        "phone_number": phone_number,
+        "email": email,
+        "address": address
+    }
+
+    contacts.append(contact_info)
+    print("Contact added.")
+
+def view_contact_list():
+    for contact in contacts:
+        print(f"Name: {contact['name']}")
+        print(f"Phone Number: {contact['phone_number']}")
+        print("--------------------")
+
+def search_contact():
+    search_term = input("Enter name or phone number to search: ")
+    found_contact = None
+    for contact in contacts:
+        if contact['name'].lower() == search_term.lower() or contact['phone_number'] == search_term:
+            found_contact = contact
+            break
+
+    if found_contact:
+        print(f"Contact Information:")
+        print(f"Name: {found_contact['name']}")
+        print(f"Phone Number: {found_contact['phone_number']}")
+        print(f"Email: {found_contact['email']}")
+        print(f"Address: {found_contact['address']}")
+    else:
+        print("No contact found with that name or phone number.")
+
+def update_contact():
+    search_term = input("Enter name or phone number to update: ")
+    found_contact = None
+    for contact in contacts:
+        if contact['name'].lower() == search_term.lower() or contact['phone_number'] == search_term:
+            found_contact = contact
+            break
+
+    if found_contact:
+        new_name = input("Enter new name: ")
+        new_phone_number = input("Enter new phone number: ")
+        new_email = input("Enter new email: ")
+        new_address = input("Enter new address: ")
+
+        found_contact['name'] = new_name
+        found_contact['phone_number'] = new_phone_number
+        found_contact['email'] = new_email
+        found_contact['address'] = new_address
+
+        print("Contact information updated.")
+    else:
+        print("No contact found with that name or phone number.")
+
+def delete_contact():
+    search_term = input("Enter name or phone number to delete: ")
+    found_contact = None
+    for contact in contacts:
+        if contact['name'].lower() == search_term.lower() or contact['phone_number'] == search_term:
+            found_contact = contact
+            break
+
+    if found_contact:
+        contacts.remove(found_contact)
+        print("Contact deleted.")
+    else:
+        print("No contact found with that name or phone number.")
+
+def main():
+    while True:
+        print("\nContact Management System")
+        print("-------------------------")
+        print("1. Add Contact")
+        print("2. View Contact List")
+        print("3. Search Contact")
+        print("4. Update Contact")
+        print("5. Delete Contact")
+        print("6. Exit")
+        print("-------------------------")
+
+        choice = int(input("Enter your choice: "))
+
+        if choice == 1:
+            add_contact()
+        elif choice == 2:
+            view_contact_list()
+        elif choice == 3:
+            search_contact()
+        elif choice == 4:
+            update_contact()
+        elif choice == 5:
+            delete_contact()
+        elif choice == 6:
+            print("Closing the Contact book, Thank You.!!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 6.")
+
+if __name__ == "__main__":
+    main()
